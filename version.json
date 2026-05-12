@@ -1,1 +1,322 @@
-//配置
+{
+  "app_config": {
+    "app_name": "朝夕记账",
+    "package_name": "com.zhaoxi.app",
+    "slogan": "记下生活，掌控隐私",
+    "android_min_version": "10.0",
+    "support_email": "",
+    "feedback_url": "https://example.com/feedback"
+  },
+  "version_config": {
+    "config_version": 1,
+    "config_name": "zhaoxi_initial_config",
+    "min_supported_app_version": "2.2.0",
+    "latest_app_version": "2.3.0",
+    "force_update": false,
+    "update_message": "",
+    "android_download_url": "https://example.com/download/android"
+  },
+  "remote_config_source": {
+    "primary_url": "https://cdn.jsdelivr.net/gh/wangychao1/jizhang@325b48b31ee2a960600392b802402b8fe58a86b8/version.json",
+    "backup_url": "https://raw.githubusercontent.com/wangychao1/jizhang/325b48b31ee2a960600392b802402b8fe58a86b8/version.json"
+  },
+  "weather_config": {
+    "enable": true,
+    "default_city": "青岛",
+    "default_adcode": "370200",
+    "primary_provider": "amap",
+    "backup_provider": "qweather",
+    "refresh_interval_minutes": 60,
+    "amap": {
+      "app_name": "zhaoxijizhang",
+      "api_key": "24855621298a65c90d10c265baa4d7be"
+    },
+    "qweather": {
+      "app_name": "zhaoxijizhang",
+      "api_key": "a79c299f8c1a4f0e9372d42e4ea78839",
+      "credential_id": "K7B82CD48B"
+    }
+  },
+  "ad_global_config": {
+    "global_switch": true,
+    "new_user_protection_days": 3,
+    "global_splash_daily_max": 2,
+    "splash_interval_minutes": 10,
+    "reward_video_daily_max": 3,
+    "sdk_priority": [
+      "gdt",
+      "pangle",
+      "custom"
+    ],
+    "custom_ad_fallback": true
+  },
+  "ad_sdk_config": {
+    "gdt": {
+      "enable": false,
+      "app_id": "",
+      "splash_slot_id": "",
+      "banner_home_slot_id": "",
+      "banner_stats_slot_id": "",
+      "banner_health_slot_id": "",
+      "banner_profile_slot_id": "",
+      "reward_video_slot_id": ""
+    },
+    "pangle": {
+      "enable": false,
+      "app_id": "",
+      "splash_slot_id": "",
+      "banner_home_slot_id": "",
+      "banner_stats_slot_id": "",
+      "banner_health_slot_id": "",
+      "banner_profile_slot_id": "",
+      "reward_video_slot_id": ""
+    }
+  },
+  "ad_list_config": [
+    {
+      "ad_id": "AD001",
+      "enable": true,
+      "position": "splash",
+      "type": "splash",
+      "provider": "custom",
+      "height_dp": 0,
+      "show_after_new_user_days": 0,
+      "new_user_daily_max": 1,
+      "daily_max": 2,
+      "min_interval_minutes": 10,
+      "skip_enable": true,
+      "skip_after_seconds": 3,
+      "clickable": true,
+      "jump_type": "external_browser",
+      "jump_url": "https://example.com",
+      "image_url_primary": "",
+      "image_url_backup": "",
+      "tracking_enable": false
+    },
+    {
+      "ad_id": "AD002",
+      "enable": true,
+      "position": "home_bottom",
+      "type": "banner",
+      "provider": "custom",
+      "height_dp": 60,
+      "show_after_new_user_days": 3,
+      "clickable": true,
+      "jump_type": "external_browser",
+      "jump_url": "https://example.com",
+      "image_url_primary": "",
+      "image_url_backup": "",
+      "tracking_enable": false
+    },
+    {
+      "ad_id": "AD003",
+      "enable": true,
+      "position": "accounting_stats_bottom",
+      "type": "banner",
+      "provider": "custom",
+      "height_dp": 60,
+      "show_after_new_user_days": 3,
+      "clickable": true,
+      "jump_type": "external_browser",
+      "jump_url": "https://example.com",
+      "image_url_primary": "",
+      "image_url_backup": "",
+      "tracking_enable": false
+    },
+    {
+      "ad_id": "AD004",
+      "enable": true,
+      "position": "health_stats_bottom",
+      "type": "banner",
+      "provider": "custom",
+      "height_dp": 60,
+      "show_after_new_user_days": 3,
+      "clickable": true,
+      "jump_type": "external_browser",
+      "jump_url": "https://example.com/health",
+      "image_url_primary": "",
+      "image_url_backup": "",
+      "tracking_enable": false
+    },
+    {
+      "ad_id": "AD005",
+      "enable": true,
+      "position": "profile_bottom",
+      "type": "banner",
+      "provider": "custom",
+      "height_dp": 60,
+      "show_after_new_user_days": 3,
+      "clickable": true,
+      "jump_type": "external_browser",
+      "jump_url": "https://example.com",
+      "image_url_primary": "",
+      "image_url_backup": "",
+      "tracking_enable": false
+    }
+  ],
+  "reward_video_unlock_config": {
+    "daily_max": 3,
+    "items": [
+      {
+        "feature_id": "export_excel",
+        "title": "数据导出Excel",
+        "required_watch_count": 1,
+        "validity_days": 0
+      },
+      {
+        "feature_id": "custom_training_plan",
+        "title": "自定义训练计划",
+        "required_watch_count": 1,
+        "validity_days": 0
+      },
+      {
+        "feature_id": "deep_health_stats",
+        "title": "深度健康数据统计",
+        "required_watch_count": 1,
+        "validity_days": 0
+      },
+      {
+        "feature_id": "extra_custom_reminders",
+        "title": "自定义提醒额外条数",
+        "required_watch_count": 1,
+        "validity_days": 30
+      }
+    ]
+  },
+  "feature_flags": {
+    "onboarding_required": true,
+    "accounting": true,
+    "voice_accounting": true,
+    "budget": true,
+    "body_profile": true,
+    "health_checkin": true,
+    "food_quick_add": true,
+    "health_stats": true,
+    "water_reminder": true,
+    "praise_share": true,
+    "fortune": true,
+    "fortune_share": true,
+    "privacy_lock": true,
+    "excel_export": true,
+    "encrypted_backup": true,
+    "cps": false
+  },
+  "content_config": {
+    "latest_content_version": 100,
+    "content_update_mode": "monthly",
+    "content_packages": [
+      {
+        "content_id": "monthly_2026_05",
+        "version": 100,
+        "type": "monthly",
+        "title": "2026年5月初始化内容包",
+        "url_primary": "https://cdn.jsdelivr.net/gh/wangychao1/jizhang@main/content/2026-05.json",
+        "url_backup": "https://raw.githubusercontent.com/wangychao1/jizhang/main/content/2026-05.json",
+        "sha256": "",
+        "enable": false
+      }
+    ]
+  },
+  "health_config": {
+    "default_goals": {
+      "vegetable_g": 500,
+      "fruit_g": 300,
+      "sleep_hours": 7.5,
+      "water_cup_ml": 250,
+      "protein_multiplier": 1.2,
+      "carb_multiplier": 4.0,
+      "water_bmr_multiplier": 0.0012
+    },
+    "temperature_adjustment": {
+      "over_30_add_liter": 0.5,
+      "over_35_add_liter": 1.0
+    },
+    "water_reminder": {
+      "enable": true,
+      "hot_weather_interval_minutes": 60,
+      "normal_interval_minutes": 120,
+      "message": "该喝水啦，今天有点热哦"
+    },
+    "health_disclaimer": "本内容仅为日常养生建议，如有身体不适请及时就医。"
+  },
+  "food_database_config": {
+    "database_version": 1,
+    "source_name": "中国食物成分表公开数据",
+    "local_builtin": true,
+    "remote_update_enable": false,
+    "remote_url_primary": "",
+    "remote_url_backup": ""
+  },
+  "fortune_config": {
+    "default_mode": "yijing",
+    "enable_share": true,
+    "enable_home_card": true,
+    "enable_daily_notification": false,
+    "notification_hour": 8,
+    "yijing": {
+      "enable": true,
+      "hexagram_count": 64,
+      "mapping": "date_mod"
+    },
+    "zodiac": {
+      "enable": true,
+      "sign_count": 12,
+      "days_per_sign": 30
+    }
+  },
+  "share_config": {
+    "enable": true,
+    "image_width_px": 1080,
+    "image_height_px": 1920,
+    "save_to_album": true,
+    "open_system_share_panel": true,
+    "qr_redirect_url": "https://cdn.jsdelivr.net/gh/wangychao1/jizhang@main/redirect/index.html",
+    "android_market_url": "https://example.com/download/android",
+    "ios_waitlist_url": "https://example.com/coming-soon",
+    "brand_bar_height_px": 180,
+    "brand_slogan": "记下生活，掌控隐私",
+    "short_link_text": "扫码下载朝夕记账"
+  },
+  "cps_config": {
+    "enable": false,
+    "providers": [
+      {
+        "name": "taobao",
+        "enable": false,
+        "pid": "",
+        "default_url": ""
+      },
+      {
+        "name": "jd",
+        "enable": false,
+        "union_id": "",
+        "default_url": ""
+      }
+    ]
+  },
+  "privacy_config": {
+    "local_only": true,
+    "serverless": true,
+    "encryption": "AES-256-GCM",
+    "privacy_dashboard_no_ads": true,
+    "accounting_page_no_ads": true,
+    "privacy_lock": {
+      "enable": true,
+      "pin_length": 4,
+      "max_error_count": 5,
+      "lock_seconds": 30,
+      "forgot_password_strategy": "clear_all_data"
+    }
+  },
+  "compliance_config": {
+    "privacy_policy_url": "https://cdn.jsdelivr.net/gh/wangychao1/jizhang@main/legal/privacy.html",
+    "user_agreement_url": "https://cdn.jsdelivr.net/gh/wangychao1/jizhang@main/legal/terms.html",
+    "disclaimer_url": "https://cdn.jsdelivr.net/gh/wangychao1/jizhang@main/legal/disclaimer.html",
+    "ad_compliance_url": "https://cdn.jsdelivr.net/gh/wangychao1/jizhang@main/legal/ad-compliance.html"
+  }
+}
+
+
+
+
+10:12
