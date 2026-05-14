@@ -8,7 +8,8 @@
     "feedback_url": "https://example.com/feedback"
   },
   "version_config": {
-    "config_version": 1,
+    "_comment": "config_version 每次远程配置变更都要递增，否则客户端可能继续使用缓存配置。",
+    "config_version": 3,
     "config_name": "zhaoxi_initial_config",
     "min_supported_app_version": "2.2.0",
     "latest_app_version": "2.3.0",
@@ -17,8 +18,8 @@
     "android_download_url": "https://example.com/download/android"
   },
   "remote_config_source": {
-    "primary_url": "https://cdn.jsdelivr.net/gh/wangychao1/jizhang@325b48b31ee2a960600392b802402b8fe58a86b8/version.json",
-    "backup_url": "https://raw.githubusercontent.com/wangychao1/jizhang/325b48b31ee2a960600392b802402b8fe58a86b8/version.json"
+    "primary_url": "https://cdn.jsdelivr.net/gh/wangychao1/jizhang@main/version.json",
+    "backup_url": "https://github.com/wangychao1/jizhang/blob/main/version.json"
   },
   "weather_config": {
     "enable": true,
@@ -38,8 +39,9 @@
     }
   },
   "ad_global_config": {
+    "_comment": "广告全局开关；new_user_protection_days 为 0 表示新用户也立即展示页面广告位。",
     "global_switch": true,
-    "new_user_protection_days": 3,
+    "new_user_protection_days": 0,
     "global_splash_daily_max": 2,
     "splash_interval_minutes": 10,
     "reward_video_daily_max": 3,
@@ -74,6 +76,7 @@
   },
   "ad_list_config": [
     {
+      "_comment": "预留开屏广告位 AD001。当前 App 代码尚未接入开屏广告展示逻辑，因此配置保留但不会实际展示。",
       "ad_id": "AD001",
       "enable": true,
       "position": "splash",
@@ -94,13 +97,14 @@
       "tracking_enable": false
     },
     {
+      "_comment": "首页底部 Banner，对应 Screen.Home / AD002。",
       "ad_id": "AD002",
       "enable": true,
       "position": "home_bottom",
       "type": "banner",
       "provider": "custom",
       "height_dp": 60,
-      "show_after_new_user_days": 3,
+      "show_after_new_user_days": 0,
       "clickable": true,
       "jump_type": "external_browser",
       "jump_url": "https://example.com",
@@ -109,13 +113,14 @@
       "tracking_enable": false
     },
     {
+      "_comment": "统计页和账单页底部 Banner，对应 Screen.Stats、Screen.AccountingRecords / AD003。",
       "ad_id": "AD003",
       "enable": true,
       "position": "accounting_stats_bottom",
       "type": "banner",
       "provider": "custom",
       "height_dp": 60,
-      "show_after_new_user_days": 3,
+      "show_after_new_user_days": 0,
       "clickable": true,
       "jump_type": "external_browser",
       "jump_url": "https://example.com",
@@ -124,13 +129,14 @@
       "tracking_enable": false
     },
     {
+      "_comment": "健康页和健康统计页底部 Banner，对应 Screen.Fitness、Screen.HealthStats / AD004。",
       "ad_id": "AD004",
       "enable": true,
       "position": "health_stats_bottom",
       "type": "banner",
       "provider": "custom",
       "height_dp": 60,
-      "show_after_new_user_days": 3,
+      "show_after_new_user_days": 0,
       "clickable": true,
       "jump_type": "external_browser",
       "jump_url": "https://example.com/health",
@@ -139,13 +145,14 @@
       "tracking_enable": false
     },
     {
+      "_comment": "我的页底部 Banner，对应 Screen.Profile / AD005。",
       "ad_id": "AD005",
       "enable": true,
       "position": "profile_bottom",
       "type": "banner",
       "provider": "custom",
       "height_dp": 60,
-      "show_after_new_user_days": 3,
+      "show_after_new_user_days": 0,
       "clickable": true,
       "jump_type": "external_browser",
       "jump_url": "https://example.com",
@@ -315,4 +322,3 @@
     "ad_compliance_url": "https://cdn.jsdelivr.net/gh/wangychao1/jizhang@main/legal/ad-compliance.html"
   }
 }
-
