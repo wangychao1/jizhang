@@ -5,7 +5,7 @@
     "slogan": "记下生活，掌控隐私"
   },
   "version_config": {
-    "config_version": 7
+    "config_version": 8
   },
   "remote_config_source": {
     "primary_url": "https://cdn.jsdelivr.net/gh/wangychao1/jizhang@main/version.json",
