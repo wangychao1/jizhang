@@ -5,7 +5,8 @@
     "slogan": "记下生活，掌控隐私"
   },
   "version_config": {
-    "config_version": 10
+    "config_version": 10,
+    "min_supported_app_version": "V1.0"
   },
   "remote_config_source": {
     "primary_url": "https://cdn.jsdelivr.net/gh/wangychao1/jizhang@main/version.json",
@@ -32,7 +33,8 @@
     "ad_slot_daily_max": 5,
     "ad_interval_minutes": 10,
     "global_splash_daily_max": 5,
-    "splash_interval_minutes": 10
+    "splash_interval_minutes": 10,
+    "reward_video_daily_max": 3
   },
   "ad_sdk_config": {
     "umeng_appwin": {
@@ -47,7 +49,8 @@
       "banner_health_stats_slot_id": "100009843",
       "banner_health_record_slot_id": "100009842",
       "floating_privacy_slot_id": "100009849",
-      "floating_profile_slot_id": "100009812"
+      "floating_profile_slot_id": "100009812",
+      "reward_video_slot_id": "100009848"
     }
   },
   "ad_list_config": [
