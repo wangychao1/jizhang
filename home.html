@@ -1,1 +1,154 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <!-- 移动端自适应核心配置 -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>朝夕APP下载中心 - 温馨简洁版</title>
+    <!-- 引入Tailwind CSS 快速构建响应式样式 -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- 引入图标库 -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css">
+    
+    <!-- 自定义配置：温馨风格配色 -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        warm: {
+                            bg: '#FDFBF5',       // 页面背景：米白色（温馨）
+                            card: '#FFFFFF',     // 卡片背景：纯白
+                            title: '#8B5A2B',    // 标题颜色：暖棕色
+                            ios: '#007AFF',      // iOS按钮：苹果官方蓝
+                            android: '#34A853',  // 安卓按钮：谷歌官方绿
+                        },
+                    },
+                    fontFamily: {
+                        sans: ['PingFang SC', 'Microsoft YaHei', 'sans-serif'],
+                    },
+                }
+            }
+        }
+    </script>
 
+    <style type="text/tailwindcss">
+        @layer utilities {
+            /* 卡片悬停动画：交互友好 */
+            .card-hover {
+                @apply transition-all duration-300 hover:-translate-y-2 hover:shadow-lg;
+            }
+            /* 瀑布流容器样式 */
+            .waterfall-container {
+                @apply relative w-full max-w-7xl mx-auto px-4;
+            }
+            .waterfall-item {
+                @apply absolute mb-6 rounded-2xl bg-warm-card p-6 shadow-md card-hover;
+            }
+        }
+    </style>
+</head>
+
+<body class="bg-warm-bg text-gray-700 min-h-screen">
+    <!-- 页面头部：标题 + 简介 -->
+    <header class="py-10 text-center">
+        <h1 class="text-[clamp(1.8rem,5vw,2.8rem)] font-bold text-warm-title mb-3">
+            <i class="fa fa-mobile-phone mr-2"></i>APP下载中心
+        </h1>
+        <p class="text-gray-600 text-[clamp(1rem,2vw,1.2rem)] max-w-2xl mx-auto px-4">
+            安全下载，简单温馨，用心打造每一款产品
+        </p>
+    </header>
+
+    <!-- 瀑布流主体区域 -->
+    <main class="waterfall-container" id="waterfall">
+        <!-- ========== APP卡片 1 ========== -->
+        <div class="waterfall-item">
+            <h2 class="text-xl font-bold text-warm-title mb-2">朝夕记账</h2>
+            <p class="text-sm text-gray-600 mb-4 min-h-[60px]">
+               朝夕记账是一款以本地存储为核心的个人记账与生活管理工具。<br/>
+              你可以快速记录日常支出和收入，查看本月消费、收入、预算剩余与分类统计；也可以记录饮水、蛋白质、蔬菜、水果、碳水和睡眠等健康打卡数据。所有核心数据默认保存在手机本机，支持本地导出、加密备份与一键清空。
+            </p>
+            
+            <!-- iOS 下载区 -->
+            <div class="mb-4">
+                <a href="https://你的iOS下载链接" target="_blank" 
+                   class="flex items-center justify-center gap-2 w-full py-2 rounded-lg bg-warm-ios text-white font-medium mb-2 hover:opacity-90">
+                    <i class="fa fa-apple"></i>iOS 立即下载
+                </a>
+                <div class="text-center">
+                    <img src="https://picsum.photos/100/100" alt="iOS二维码" class="w-24 h-24 mx-auto rounded-lg">
+                    <p class="text-xs text-gray-500 mt-1">扫码下载iOS版</p>
+                </div>
+            </div>
+
+            <!-- 安卓 下载区 -->
+            <div>
+                <a href="https://你的安卓下载链接" target="_blank" 
+                   class="flex items-center justify-center gap-2 w-full py-2 rounded-lg bg-warm-android text-white font-medium mb-2 hover:opacity-90">
+                    <i class="fa fa-android"></i>Android 立即下载
+                </a>
+                <div class="text-center">
+                    <img src="https://picsum.photos/100/100" alt="安卓二维码" class="w-24 h-24 mx-auto rounded-lg">
+                    <p class="text-xs text-gray-500 mt-1">扫码下载安卓版</p>
+                </div>
+            </div>
+        </div>
+
+      
+    </main>
+
+    <!-- 页脚 -->
+    <footer class="py-6 text-center text-gray-500 text-sm mt-10">
+        <p>© 2025 你的公司名称 版权所有 | 安全下载 用心服务</p>
+    </footer>
+
+    <!-- 瀑布流核心JS：自适应布局 -->
+    <script>
+        window.onload = function () {
+            waterfall();
+            // 窗口大小改变时重新渲染
+            window.onresize = waterfall;
+        };
+
+        function waterfall() {
+            const container = document.getElementById('waterfall');
+            const items = document.querySelectorAll('.waterfall-item');
+            if (items.length === 0) return;
+
+            // 响应式列数：手机1列 / 平板2列 / PC3列
+            let column = 1;
+            const screenWidth = document.documentElement.clientWidth;
+            if (screenWidth >= 1024) column = 3;
+            else if (screenWidth >= 768) column = 2;
+
+            // 卡片宽度
+            const itemWidth = items[0].offsetWidth;
+            // 存储每列的高度
+            const columnHeight = [];
+
+            for (let i = 0; i < items.length; i++) {
+                if (i < column) {
+                    // 第一行：直接定位
+                    items[i].style.left = i * itemWidth + 'px';
+                    items[i].style.top = '0px';
+                    columnHeight.push(items[i].offsetHeight);
+                } else {
+                    // 找到高度最小的列
+                    let minHeight = Math.min(...columnHeight);
+                    let minIndex = columnHeight.indexOf(minHeight);
+
+                    // 定位当前卡片
+                    items[i].style.left = minIndex * itemWidth + 'px';
+                    items[i].style.top = minHeight + '20px';
+                    // 更新列高度
+                    columnHeight[minIndex] = minHeight + items[i].offsetHeight + 20;
+                }
+            }
+
+            // 设置容器高度
+            container.style.height = Math.max(...columnHeight) + 'px';
+        }
+    </script>
+</body>
+</html>
