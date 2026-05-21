@@ -1,154 +1,420 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-    <meta charset="UTF-8">
-    <!-- 移动端自适应核心配置 -->
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>朝夕APP下载中心 - 温馨简洁版</title>
-    <!-- 引入Tailwind CSS 快速构建响应式样式 -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    <!-- 引入图标库 -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css">
-    
-    <!-- 自定义配置：温馨风格配色 -->
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    colors: {
-                        warm: {
-                            bg: '#FDFBF5',       // 页面背景：米白色（温馨）
-                            card: '#FFFFFF',     // 卡片背景：纯白
-                            title: '#8B5A2B',    // 标题颜色：暖棕色
-                            ios: '#007AFF',      // iOS按钮：苹果官方蓝
-                            android: '#34A853',  // 安卓按钮：谷歌官方绿
-                        },
-                    },
-                    fontFamily: {
-                        sans: ['PingFang SC', 'Microsoft YaHei', 'sans-serif'],
-                    },
-                }
-            }
-        }
-    </script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="朝夕系列产品下载与上架信息。">
+  <title>朝夕系列产品</title>
+  <style>
+    :root {
+      --bg: #fffaf2;
+      --card: #ffffff;
+      --text: #26211d;
+      --muted: #756a60;
+      --line: #eadccd;
+      --brand: #f26722;
+      --brand-soft: #fff1e5;
+      --green: #268353;
+      --blue: #2869d8;
+      --shadow: 0 14px 34px rgba(135, 76, 28, .1);
+    }
 
-    <style type="text/tailwindcss">
-        @layer utilities {
-            /* 卡片悬停动画：交互友好 */
-            .card-hover {
-                @apply transition-all duration-300 hover:-translate-y-2 hover:shadow-lg;
-            }
-            /* 瀑布流容器样式 */
-            .waterfall-container {
-                @apply relative w-full max-w-7xl mx-auto px-4;
-            }
-            .waterfall-item {
-                @apply absolute mb-6 rounded-2xl bg-warm-card p-6 shadow-md card-hover;
-            }
-        }
-    </style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      color: var(--text);
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif;
+      background: var(--bg);
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    img {
+      display: block;
+      max-width: 100%;
+    }
+
+    .wrap {
+      width: min(1120px, calc(100% - 28px));
+      margin: 0 auto;
+    }
+
+    header {
+      padding: 34px 0 24px;
+    }
+
+    .topbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      margin-bottom: 30px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      min-width: 0;
+    }
+
+    .brand img {
+      width: 44px;
+      height: 44px;
+      border-radius: 12px;
+      object-fit: cover;
+      box-shadow: 0 10px 20px rgba(242, 103, 34, .2);
+    }
+
+    .brand strong {
+      display: block;
+      font-size: 18px;
+    }
+
+    .brand span {
+      display: block;
+      margin-top: 2px;
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    .contact {
+      flex: 0 0 auto;
+      padding: 9px 13px;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      color: var(--brand);
+      background: #fff;
+      font-size: 14px;
+      font-weight: 700;
+    }
+
+    h1 {
+      margin: 0;
+      font-size: clamp(30px, 7vw, 54px);
+      line-height: 1.08;
+      letter-spacing: 0;
+    }
+
+    .intro {
+      max-width: 680px;
+      margin: 14px 0 0;
+      color: var(--muted);
+      font-size: 16px;
+      line-height: 1.8;
+    }
+
+    .notice {
+      display: flex;
+      gap: 12px;
+      margin-top: 20px;
+      padding: 14px 16px;
+      border: 1px solid #f0d3b8;
+      border-radius: 14px;
+      background: var(--brand-soft);
+      color: #704119;
+      line-height: 1.65;
+    }
+
+    .notice b {
+      flex: 0 0 auto;
+      color: var(--brand);
+    }
+
+    .waterfall {
+      column-count: 3;
+      column-gap: 18px;
+      padding: 14px 0 44px;
+    }
+
+    .product-card {
+      display: inline-block;
+      width: 100%;
+      margin: 0 0 18px;
+      overflow: hidden;
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      background: var(--card);
+      box-shadow: var(--shadow);
+      break-inside: avoid;
+    }
+
+    .cover {
+      position: relative;
+      height: 190px;
+      background: #fff2df;
+      overflow: hidden;
+    }
+
+    .cover img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center 42%;
+    }
+
+    .status {
+      position: absolute;
+      right: 12px;
+      top: 12px;
+      padding: 6px 10px;
+      border-radius: 999px;
+      color: var(--brand);
+      background: rgba(255, 255, 255, .9);
+      font-size: 12px;
+      font-weight: 800;
+    }
+
+    .content {
+      padding: 18px;
+    }
+
+    .content h2 {
+      margin: 0;
+      font-size: 22px;
+      line-height: 1.2;
+      letter-spacing: 0;
+    }
+
+    .slogan {
+      margin: 8px 0 0;
+      color: var(--brand);
+      font-size: 14px;
+      font-weight: 700;
+    }
+
+    .desc {
+      margin: 14px 0 0;
+      color: var(--muted);
+      font-size: 14px;
+      line-height: 1.75;
+    }
+
+    .tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 14px;
+    }
+
+    .tags span {
+      padding: 5px 8px;
+      border-radius: 999px;
+      color: #6e5947;
+      background: #f7efe6;
+      font-size: 12px;
+    }
+
+    .downloads {
+      display: grid;
+      gap: 10px;
+      margin-top: 16px;
+    }
+
+    .download-link {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      min-height: 44px;
+      padding: 0 13px;
+      border-radius: 12px;
+      border: 1px solid var(--line);
+      background: #fff;
+      font-size: 14px;
+      font-weight: 800;
+    }
+
+    .download-link.ios {
+      color: var(--blue);
+    }
+
+    .download-link.android {
+      color: var(--green);
+    }
+
+    .download-link.is-disabled {
+      color: #9a9189;
+      background: #faf7f3;
+      cursor: not-allowed;
+    }
+
+    .download-link small {
+      color: var(--muted);
+      font-size: 12px;
+      font-weight: 600;
+    }
+
+    .qr-box {
+      margin-top: 16px;
+      padding: 12px;
+      border-radius: 14px;
+      background: #faf7f3;
+      text-align: center;
+    }
+
+    .qr-box img {
+      width: 136px;
+      height: 136px;
+      margin: 0 auto;
+      border-radius: 12px;
+      object-fit: cover;
+      object-position: center 38%;
+      background: #fff;
+    }
+
+    .qr-box p {
+      margin: 9px 0 0;
+      color: var(--muted);
+      font-size: 12px;
+      line-height: 1.55;
+    }
+
+    .placeholder {
+      padding: 22px 18px;
+      border-style: dashed;
+      color: var(--muted);
+      background: rgba(255, 255, 255, .55);
+    }
+
+    .placeholder h2 {
+      color: var(--text);
+    }
+
+    footer {
+      padding: 22px 0 34px;
+      border-top: 1px solid var(--line);
+      color: var(--muted);
+      text-align: center;
+      font-size: 13px;
+    }
+
+    @media (max-width: 900px) {
+      .waterfall {
+        column-count: 2;
+      }
+    }
+
+    @media (max-width: 620px) {
+      .wrap {
+        width: min(100% - 22px, 1120px);
+      }
+
+      header {
+        padding-top: 22px;
+      }
+
+      .topbar {
+        align-items: flex-start;
+        margin-bottom: 22px;
+      }
+
+      .contact {
+        padding: 8px 10px;
+        font-size: 13px;
+      }
+
+      .notice {
+        display: block;
+      }
+
+      .notice b {
+        display: block;
+        margin-bottom: 4px;
+      }
+
+      .waterfall {
+        column-count: 1;
+        column-gap: 0;
+      }
+
+      .cover {
+        height: 170px;
+      }
+    }
+  </style>
 </head>
+<body>
+  <header class="wrap">
+    <div class="topbar">
+      <a class="brand" href="#" aria-label="朝夕系列产品首页">
+        <img src="app_icon.png" alt="朝夕系列产品图标">
+        <span>
+          <strong>朝夕系列</strong>
+          <span>产品下载与上架信息</span>
+        </span>
+      </a>
+      <a class="contact" href="#contact">联系获取</a>
+    </div>
 
-<body class="bg-warm-bg text-gray-700 min-h-screen">
-    <!-- 页面头部：标题 + 简介 -->
-    <header class="py-10 text-center">
-        <h1 class="text-[clamp(1.8rem,5vw,2.8rem)] font-bold text-warm-title mb-3">
-            <i class="fa fa-mobile-phone mr-2"></i>APP下载中心
-        </h1>
-        <p class="text-gray-600 text-[clamp(1rem,2vw,1.2rem)] max-w-2xl mx-auto px-4">
-            安全下载，简单温馨，用心打造每一款产品
-        </p>
-    </header>
+    <h1>朝夕系列产品</h1>
+    <p class="intro">这里会展示朝夕系列的所有应用。iOS 和 Android 下载地址已预留，后续替换链接即可；应用商店版本上架后，也可以把状态改成正式下载。</p>
+    <div class="notice">
+      <b>上架提示</b>
+      <span>部分产品正在或即将提交应用商店审核，审核期间可能暂时通过二维码或联系开发者获取安装包。请以页面后续更新的正式商店链接为准。</span>
+    </div>
+  </header>
 
-    <!-- 瀑布流主体区域 -->
-    <main class="waterfall-container" id="waterfall">
-        <!-- ========== APP卡片 1 ========== -->
-        <div class="waterfall-item">
-            <h2 class="text-xl font-bold text-warm-title mb-2">朝夕记账</h2>
-            <p class="text-sm text-gray-600 mb-4 min-h-[60px]">
-               朝夕记账是一款以本地存储为核心的个人记账与生活管理工具。<br/>
-              你可以快速记录日常支出和收入，查看本月消费、收入、预算剩余与分类统计；也可以记录饮水、蛋白质、蔬菜、水果、碳水和睡眠等健康打卡数据。所有核心数据默认保存在手机本机，支持本地导出、加密备份与一键清空。
-            </p>
-            
-            <!-- iOS 下载区 -->
-            <div class="mb-4">
-                <a href="https://你的iOS下载链接" target="_blank" 
-                   class="flex items-center justify-center gap-2 w-full py-2 rounded-lg bg-warm-ios text-white font-medium mb-2 hover:opacity-90">
-                    <i class="fa fa-apple"></i>iOS 立即下载
-                </a>
-                <div class="text-center">
-                    <img src="https://picsum.photos/100/100" alt="iOS二维码" class="w-24 h-24 mx-auto rounded-lg">
-                    <p class="text-xs text-gray-500 mt-1">扫码下载iOS版</p>
-                </div>
-            </div>
-
-            <!-- 安卓 下载区 -->
-            <div>
-                <a href="https://你的安卓下载链接" target="_blank" 
-                   class="flex items-center justify-center gap-2 w-full py-2 rounded-lg bg-warm-android text-white font-medium mb-2 hover:opacity-90">
-                    <i class="fa fa-android"></i>Android 立即下载
-                </a>
-                <div class="text-center">
-                    <img src="https://picsum.photos/100/100" alt="安卓二维码" class="w-24 h-24 mx-auto rounded-lg">
-                    <p class="text-xs text-gray-500 mt-1">扫码下载安卓版</p>
-                </div>
-            </div>
+  <main class="wrap">
+    <section class="waterfall" aria-label="朝夕系列产品列表">
+      <article class="product-card">
+        <div class="cover">
+          <img src="app_icon.png" alt="朝夕记账产品图">
+          <span class="status">上架准备中</span>
         </div>
+        <div class="content">
+          <h2>朝夕记账</h2>
+          <p class="slogan">记下生活，掌控隐私</p>
+          <p class="desc">本地优先的个人记账与生活管理工具。支持收支记录、预算查看、分类统计，也可以记录饮水、蛋白质、蔬菜、水果、碳水和睡眠等健康数据。</p>
+          <div class="tags" aria-label="产品标签">
+            <span>本地存储</span>
+            <span>记账统计</span>
+            <span>健康打卡</span>
+            <span>加密备份</span>
+          </div>
+          <div class="downloads">
+            <a class="download-link ios is-disabled" href="javascript:void(0)" aria-disabled="true">
+              iOS 下载
+              <small>链接预留</small>
+            </a>
+            <a class="download-link android is-disabled" href="javascript:void(0)" aria-disabled="true">
+              Android 下载
+              <small>链接预留</small>
+            </a>
+          </div>
+          <div class="qr-box" id="contact">
+            <img src="wechat_qr.jpg" alt="逐风微信二维码">
+            <p>扫码添加微信，获取安装包或反馈问题。</p>
+          </div>
+        </div>
+      </article>
 
-      
-    </main>
+      <article class="product-card placeholder">
+        <h2>朝夕系列新产品</h2>
+        <p class="desc">后续新增产品时，复制一张产品卡片并替换名称、介绍、图片和下载链接即可。</p>
+        <div class="downloads">
+          <a class="download-link ios is-disabled" href="javascript:void(0)" aria-disabled="true">
+            iOS 下载
+            <small>链接预留</small>
+          </a>
+          <a class="download-link android is-disabled" href="javascript:void(0)" aria-disabled="true">
+            Android 下载
+            <small>链接预留</small>
+          </a>
+        </div>
+      </article>
+    </section>
+  </main>
 
-    <!-- 页脚 -->
-    <footer class="py-6 text-center text-gray-500 text-sm mt-10">
-        <p>© 2025 你的公司名称 版权所有 | 安全下载 用心服务</p>
-    </footer>
-
-    <!-- 瀑布流核心JS：自适应布局 -->
-    <script>
-        window.onload = function () {
-            waterfall();
-            // 窗口大小改变时重新渲染
-            window.onresize = waterfall;
-        };
-
-        function waterfall() {
-            const container = document.getElementById('waterfall');
-            const items = document.querySelectorAll('.waterfall-item');
-            if (items.length === 0) return;
-
-            // 响应式列数：手机1列 / 平板2列 / PC3列
-            let column = 1;
-            const screenWidth = document.documentElement.clientWidth;
-            if (screenWidth >= 1024) column = 3;
-            else if (screenWidth >= 768) column = 2;
-
-            // 卡片宽度
-            const itemWidth = items[0].offsetWidth;
-            // 存储每列的高度
-            const columnHeight = [];
-
-            for (let i = 0; i < items.length; i++) {
-                if (i < column) {
-                    // 第一行：直接定位
-                    items[i].style.left = i * itemWidth + 'px';
-                    items[i].style.top = '0px';
-                    columnHeight.push(items[i].offsetHeight);
-                } else {
-                    // 找到高度最小的列
-                    let minHeight = Math.min(...columnHeight);
-                    let minIndex = columnHeight.indexOf(minHeight);
-
-                    // 定位当前卡片
-                    items[i].style.left = minIndex * itemWidth + 'px';
-                    items[i].style.top = minHeight + '20px';
-                    // 更新列高度
-                    columnHeight[minIndex] = minHeight + items[i].offsetHeight + 20;
-                }
-            }
-
-            // 设置容器高度
-            container.style.height = Math.max(...columnHeight) + 'px';
-        }
-    </script>
+  <footer class="wrap">
+    © 2026 朝夕系列产品
+  </footer>
 </body>
 </html>
